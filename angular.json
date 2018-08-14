@@ -22,7 +22,12 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [                  
+            "styles": [              
+              "src/css/normalize.css",
+              "src/css/bootstrap.min.css",
+              "src/css/font-awesome.min.css",
+              "src/css/themify-icons.css",
+              "src/css/cs-skin-elastic.css",
               "src/scss/style.css"              
             ],
             "scripts": [
@@ -76,6 +81,11 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [              
+              "src/css/normalize.css",
+              "src/css/bootstrap.min.css",
+              "src/css/font-awesome.min.css",
+              "src/css/themify-icons.css",
+              "src/css/cs-skin-elastic.css",
               "src/scss/style.css"
             ],
             "scripts": [
