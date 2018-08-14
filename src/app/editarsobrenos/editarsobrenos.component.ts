@@ -12,4 +12,7 @@ export class EditarsobrenosComponent implements OnInit {
   ngOnInit() {
   }
 
+  SalvarDadosSobreNos(){
+    
+  }
 }
