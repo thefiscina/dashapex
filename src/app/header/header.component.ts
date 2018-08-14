@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private user = JSON.parse(localStorage.getItem('user'));
+  public user = JSON.parse(localStorage.getItem('user'));
   constructor(private router: Router) {
     console.log(this.user);
     if(this.user == null){
