@@ -1,0 +1,49 @@
+<div class="animated fadeIn">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <form [formGroup]="DadosSobreNos" (ngSubmit)="SalvarDadosSobreNos()">
+          <div class="card">
+            <div class="card-header">
+              <strong>Editar dados sobre nós</strong>
+              <small> (* Ao salvar será atualizado automaticamente)</small>
+            </div>
+            <div class="card-body card-block">
+              <div class="form-group">
+                <label class=" form-control-label">Título</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="ti-pencil"></i>
+                  </div>
+                  <input class="form-control" formControlName="titulo">
+                </div>
+                <small class="form-text text-muted">insira um título para o site</small>
+              </div>
+              <div class="form-group">
+                <label class=" form-control-label">Texto</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                  <input class="form-control" formControlName="texto">
+                </div>               
+              </div>
+              <div class="form-group">
+                <label class=" form-control-label">Foto</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                  <input class="form-control" formControlName="foto">
+                </div>                
+              </div>
+  
+            
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Salvar dados</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>  
+    </div>
+    <!-- .animated -->

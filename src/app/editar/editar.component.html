@@ -1,0 +1,103 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <form [formGroup]="DadosContato" (ngSubmit)="SalvarDadosContato()">
+        <div class="card">
+          <div class="card-header">
+            <strong>Editar dados de contato</strong>
+            <small> (* Ao salvar será atualizado automaticamente)</small>
+          </div>
+          <div class="card-body card-block">
+            <div class="form-group">
+              <label class=" form-control-label">Nome do site</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="ti-pencil"></i>
+                </div>
+                <input class="form-control" formControlName="nome">
+              </div>
+              <small class="form-text text-muted">insira um nome para o site</small>
+            </div>
+            <div class="form-group">
+              <label class=" form-control-label">Telefone 1</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-phone"></i>
+                </div>
+                <input class="form-control" formControlName="telefone1">
+              </div>
+              <small class="form-text text-muted">ex. (999) 999-9999</small>
+            </div>
+            <div class="form-group">
+              <label class=" form-control-label">Telefone 2</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-phone"></i>
+                </div>
+                <input class="form-control" formControlName="telefone2">
+              </div>
+              <small class="form-text text-muted">ex. (999) 999-9999</small>
+            </div>
+
+            <div class="form-group">
+              <label class=" form-control-label">Email</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="ti-email"></i>
+                </div>
+                <input class="form-control" formControlName="email">
+              </div>
+              <small class="form-text text-muted">ex. fulano@gmail.com</small>
+            </div>
+
+            <div class="form-group">
+              <label class=" form-control-label">Endereço</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="ti-direction-alt"></i>
+                </div>
+                <input class="form-control" formControlName="endereco">
+              </div>
+              <small class="form-text text-muted">ex. rua das oliveiras, jardim do paraíso</small>
+            </div>
+
+            <div class="form-group">
+              <label class=" form-control-label">Linkedin</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="ti-linkedin"></i>
+                </div>
+                <input class="form-control" formControlName="linkedin">
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label class=" form-control-label">Twitter</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="ti-twitter-alt"></i>
+                </div>
+                <input class="form-control" formControlName="twitter">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class=" form-control-label">Facebook</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="ti-facebook"></i>
+                </div>
+                <input class="form-control" formControlName="facebook">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-success" type="submit">Salvar dados</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- .animated -->
