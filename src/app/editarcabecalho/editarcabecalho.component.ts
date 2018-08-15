@@ -105,13 +105,12 @@ export class EditarcabecalhoComponent implements OnInit {
   }
 
   SalvarDadosCabecalho() {
-    this.spinner.show();
     console.log(this.DadosCabecalho.value);
     if (this.Servico != null) {
       this._services.putDadosCabecalhoService(this.DadosCabecalho.value, this.Servico[0]._id).then((result) => {
         this.Servico = result["result"];
         console.log(this.Servico);
-        this.spinner.hide();
+
       }, (err) => {
         console.log('erro ao solicitar');
       });
@@ -119,7 +118,7 @@ export class EditarcabecalhoComponent implements OnInit {
       this._services.salvarDadoscabecalho(this.DadosCabecalho.value).then((result) => {
         this.Servico = result["result"];
         console.log(this.Servico);
-        this.spinner.hide();
+
       }, (err) => {
         console.log('erro ao solicitar');
       });

@@ -67,14 +67,12 @@ export class EditarsobrenosComponent implements OnInit {
   }
 
   SalvarDadosSobreNos(){
-    this.spinner.show();
- 
     console.log(this.DadosSobreNos.value);
     if (this.Servico != null) {
       this._services.putDadosSobreService(this.DadosSobreNos.value, this.Servico[0]._id).then((result) => {
         this.Servico = result["result"];
         console.log(this.Servico);
-        this.spinner.hide();
+
       }, (err) => {
         console.log('erro ao solicitar');
       });
@@ -82,7 +80,6 @@ export class EditarsobrenosComponent implements OnInit {
       this._services.salvarDadosSobre(this.DadosSobreNos.value).then((result) => {
         this.Servico = result["result"];
         console.log(this.Servico);
-        this.spinner.hide();
       }, (err) => {
         console.log('erro ao solicitar');
       });

@@ -50,10 +50,8 @@ export class EditarComponent implements OnInit {
   }
 
   SalvarDadosContato(){           
-    this.spinner.show();
     this._services.putService(this.DadosContato.value, this.user.serviceID).then((result) => {             
       this.Servico = result["result"];
-      this.spinner.hide();
       console.log(this.Servico); 
     }, (err) => {   
       console.log('erro ao solicitar');   
