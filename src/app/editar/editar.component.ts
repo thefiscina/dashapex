@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RequestService } from '../shared/user.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
@@ -13,7 +13,7 @@ export class EditarComponent implements OnInit {
   DadosContato: FormGroup;
   Servico:any;
   private user = JSON.parse(localStorage.getItem('user'));
-  constructor(private formBuilder: FormBuilder, private _services : RequestService) { 
+  constructor(private formBuilder: FormBuilder, private _services : RequestService,private spinner: NgxSpinnerService) { 
     this.DadosContato = this.formBuilder.group({
       nome: ['', Validators.required],
       telefone1: [''],
@@ -50,8 +50,10 @@ export class EditarComponent implements OnInit {
   }
 
   SalvarDadosContato(){           
+    this.spinner.show();
     this._services.putService(this.DadosContato.value, this.user.serviceID).then((result) => {             
       this.Servico = result["result"];
+      this.spinner.hide();
       console.log(this.Servico); 
     }, (err) => {   
       console.log('erro ao solicitar');   

@@ -19,6 +19,8 @@ import { ProjetosComponent } from './projetos/projetos.component';
 import { EditarcabecalhoComponent } from './editarcabecalho/editarcabecalho.component';
 import { EditarsobrenosComponent } from './editarsobrenos/editarsobrenos.component';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,7 @@ import { EditarsobrenosComponent } from './editarsobrenos/editarsobrenos.compone
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,    
+    NgxSpinnerModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [RequestService],

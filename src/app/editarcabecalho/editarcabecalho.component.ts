@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RequestService } from '../shared/user.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-editarcabecalho',
   templateUrl: './editarcabecalho.component.html',
@@ -16,7 +16,7 @@ export class EditarcabecalhoComponent implements OnInit {
   logo64: any;
 
   private user = JSON.parse(localStorage.getItem('user'));
-  constructor(private formBuilder: FormBuilder, private _services: RequestService) {
+  constructor(private formBuilder: FormBuilder, private _services: RequestService,private spinner: NgxSpinnerService) {
     this.DadosCabecalho = this.formBuilder.group({
       logo: [''],
       tituloslider1: [''],
@@ -105,12 +105,13 @@ export class EditarcabecalhoComponent implements OnInit {
   }
 
   SalvarDadosCabecalho() {
+    this.spinner.show();
     console.log(this.DadosCabecalho.value);
     if (this.Servico != null) {
       this._services.putDadosCabecalhoService(this.DadosCabecalho.value, this.Servico[0]._id).then((result) => {
         this.Servico = result["result"];
         console.log(this.Servico);
-
+        this.spinner.hide();
       }, (err) => {
         console.log('erro ao solicitar');
       });
@@ -118,7 +119,7 @@ export class EditarcabecalhoComponent implements OnInit {
       this._services.salvarDadoscabecalho(this.DadosCabecalho.value).then((result) => {
         this.Servico = result["result"];
         console.log(this.Servico);
-
+        this.spinner.hide();
       }, (err) => {
         console.log('erro ao solicitar');
       });
