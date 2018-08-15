@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class RequestService {
-apiUrl = 'https://apiapex.herokuapp.com/api/v1/';
-// apiUrl = 'http://localhost:5000/api/v1/';
+// apiUrl = 'https://apiapex.herokuapp.com/api/v1/';
+apiUrl = 'http://localhost:5000/api/v1/';
     constructor(private http: HttpClient) { }
     getUsers() {
         return new Promise(resolve => {
@@ -79,6 +79,58 @@ apiUrl = 'https://apiapex.herokuapp.com/api/v1/';
       getDadoscabecalhoService(data) {    
         return new Promise((resolve, reject) => {
           this.http.post(this.apiUrl+'cabecalho/service/', JSON.stringify(data), {
+            headers: new HttpHeaders().set("Content-Type", "application/json")        
+          })
+            .subscribe(res => {
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+        });
+      }
+
+      putDadosCabecalhoService(data, id) {    
+        return new Promise((resolve, reject) => {
+          this.http.put(this.apiUrl+'cabecalho/' + id, JSON.stringify(data), {
+            headers: new HttpHeaders().set("Content-Type", "application/json")        
+          })
+            .subscribe(res => {
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+        });
+      }
+
+      salvarDadosSobre(data) {    
+        return new Promise((resolve, reject) => {
+          this.http.post(this.apiUrl+'sobre/', JSON.stringify(data), {
+            headers: new HttpHeaders().set("Content-Type", "application/json")        
+          })
+            .subscribe(res => {
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+        });
+      }
+
+      getDadosSobreService(data) {    
+        return new Promise((resolve, reject) => {
+          this.http.post(this.apiUrl+'sobre/service/', JSON.stringify(data), {
+            headers: new HttpHeaders().set("Content-Type", "application/json")        
+          })
+            .subscribe(res => {
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+        });
+      }
+
+      putDadosSobreService(data, id) {    
+        return new Promise((resolve, reject) => {
+          this.http.put(this.apiUrl+'sobre/' + id, JSON.stringify(data), {
             headers: new HttpHeaders().set("Content-Type", "application/json")        
           })
             .subscribe(res => {

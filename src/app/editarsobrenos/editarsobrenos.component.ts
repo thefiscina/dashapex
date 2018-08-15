@@ -8,22 +8,80 @@ import { RequestService } from '../shared/user.service';
 })
 export class EditarsobrenosComponent implements OnInit {
   DadosSobreNos: FormGroup;
+  Servico:any;
+  foto:string='';
   private user = JSON.parse(localStorage.getItem('user'));
   constructor(private formBuilder: FormBuilder, private _services: RequestService) {
-
     this.DadosSobreNos = this.formBuilder.group({
-      titulo: ['', Validators.required],
+      titulo: [''],
       texto: [''],
-      foto: [''],
-      serviceID: [this.user.serviceID],
+      foto64: [''],
+      foto1:[''],
+      serviceID: [this.user.serviceID]
     });
    }
 
-  ngOnInit() {
-    
+   ngOnInit() {
+    if (this.user.serviceID != null) {
+      var dado = { serviceID: this.user.serviceID }
+      this._services.getDadosSobreService(dado).then((result) => {
+        this.Servico = result["result"];
+        console.log(this.Servico);
+        if (this.Servico.length > 0) {
+          this.popularDados(this.Servico[0])
+        }else{
+          this.Servico = null;
+        }
+      }, (err) => {
+        console.log('erro ao solicitar');
+      });
+    }
+  }
+
+  popularDados(dados) {
+    this.DadosSobreNos.controls.titulo.setValue(dados.titulo);
+    this.DadosSobreNos.controls.texto.setValue(dados.texto);
+    this.DadosSobreNos.controls.foto64.setValue(dados.foto64);    
+    this.foto = dados.foto64;
+    this.DadosSobreNos.controls.serviceID.setValue(dados.serviceID);    
+  }
+
+  changeListener($event, str): void {
+    this.readThis($event.target, str);
+  }
+
+  readThis(inputValue: any, str): void {
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {      
+      switch (str) {
+        case 'foto':
+        this.DadosSobreNos.controls.foto64.setValue(myReader.result);
+        this.foto = myReader.result;
+          break;        
+      }
+    }
+    myReader.readAsDataURL(file);
   }
 
   SalvarDadosSobreNos(){
+    console.log(this.DadosSobreNos.value);
+    if (this.Servico != null) {
+      this._services.putDadosSobreService(this.DadosSobreNos.value, this.Servico[0]._id).then((result) => {
+        this.Servico = result["result"];
+        console.log(this.Servico);
 
+      }, (err) => {
+        console.log('erro ao solicitar');
+      });
+    } else {
+      this._services.salvarDadosSobre(this.DadosSobreNos.value).then((result) => {
+        this.Servico = result["result"];
+        console.log(this.Servico);
+      }, (err) => {
+        console.log('erro ao solicitar');
+      });
+    }
   }
 }

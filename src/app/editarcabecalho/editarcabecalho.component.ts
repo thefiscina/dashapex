@@ -10,10 +10,15 @@ import { RequestService } from '../shared/user.service';
 export class EditarcabecalhoComponent implements OnInit {
   DadosCabecalho: FormGroup;
   Servico: any;
+  fotoslider164: any;
+  fotoslider264: any;
+  fotoslider364: any;
+  logo64: any;
+
   private user = JSON.parse(localStorage.getItem('user'));
   constructor(private formBuilder: FormBuilder, private _services: RequestService) {
     this.DadosCabecalho = this.formBuilder.group({
-      logo: ['', Validators.required],
+      logo: [''],
       tituloslider1: [''],
       subtituloslider1: [''],
       fotoslider1: [''],
@@ -32,23 +37,41 @@ export class EditarcabecalhoComponent implements OnInit {
 
   }
 
-  ngOnInit() {  
+  ngOnInit() {
     if (this.user.serviceID != null) {
-      var dado = {serviceID: this.user.serviceID}
-      this._services.getDadoscabecalhoService(dado).then((result) => {        
+      var dado = { serviceID: this.user.serviceID }
+      this._services.getDadoscabecalhoService(dado).then((result) => {
         this.Servico = result["result"];
         console.log(this.Servico);
-        if(this.Servico.length > 0){
+        if (this.Servico.length > 0) {
           this.popularDados(this.Servico[0])
+        }else{
+          this.Servico = null;
         }
       }, (err) => {
         console.log('erro ao solicitar');
       });
     }
   }
-  popularDados(dados){
 
+  popularDados(dados) {
+    this.DadosCabecalho.controls.fotoslider164.setValue(dados.fotoslider164);
+    this.DadosCabecalho.controls.fotoslider264.setValue(dados.fotoslider264);
+    this.DadosCabecalho.controls.fotoslider364.setValue(dados.fotoslider364);
+    this.DadosCabecalho.controls.logo64.setValue(dados.logo64);
+    this.DadosCabecalho.controls.serviceID.setValue(dados.serviceID);
+    this.DadosCabecalho.controls.subtituloslider1.setValue(dados.subtituloslider1);
+    this.DadosCabecalho.controls.subtituloslider2.setValue(dados.subtituloslider2);
+    this.DadosCabecalho.controls.subtituloslider3.setValue(dados.subtituloslider3);
+    this.DadosCabecalho.controls.tituloslider1.setValue(dados.tituloslider1);
+    this.DadosCabecalho.controls.tituloslider2.setValue(dados.tituloslider2);
+    this.DadosCabecalho.controls.tituloslider3.setValue(dados.tituloslider3);
+    this.fotoslider164 = dados.fotoslider164;
+    this.fotoslider264 = dados.fotoslider264;
+    this.fotoslider364 = dados.fotoslider364;
+    this.logo64 = dados.logo64;
   }
+
   changeListener($event, str): void {
     this.readThis($event.target, str);
   }
@@ -61,15 +84,19 @@ export class EditarcabecalhoComponent implements OnInit {
       switch (str) {
         case 'logo':
           this.DadosCabecalho.controls.logo64.setValue(myReader.result);
+          this.logo64 = myReader.result;
           break;
         case 'slider1':
           this.DadosCabecalho.controls.fotoslider164.setValue(myReader.result);
+          this.fotoslider164 = myReader.result;
           break;
         case 'slider2':
           this.DadosCabecalho.controls.fotoslider264.setValue(myReader.result);
+          this.fotoslider264 = myReader.result;
           break;
         case 'slider3':
           this.DadosCabecalho.controls.fotoslider364.setValue(myReader.result);
+          this.fotoslider364 = myReader.result;
           break;
       }
 
@@ -79,13 +106,24 @@ export class EditarcabecalhoComponent implements OnInit {
 
   SalvarDadosCabecalho() {
     console.log(this.DadosCabecalho.value);
-    this._services.salvarDadoscabecalho(this.DadosCabecalho.value).then((result) => {
-      this.Servico = result["result"];
-      console.log(this.Servico);
+    if (this.Servico != null) {
+      this._services.putDadosCabecalhoService(this.DadosCabecalho.value, this.Servico[0]._id).then((result) => {
+        this.Servico = result["result"];
+        console.log(this.Servico);
 
-    }, (err) => {
-      console.log('erro ao solicitar');
-    });
+      }, (err) => {
+        console.log('erro ao solicitar');
+      });
+    } else {
+      this._services.salvarDadoscabecalho(this.DadosCabecalho.value).then((result) => {
+        this.Servico = result["result"];
+        console.log(this.Servico);
+
+      }, (err) => {
+        console.log('erro ao solicitar');
+      });
+    }
   }
+
 
 }
