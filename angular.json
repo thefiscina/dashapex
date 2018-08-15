@@ -29,7 +29,7 @@
               "src/css/font-awesome.min.css",
               "src/css/themify-icons.css",              
               "src/css/cs-skin-elastic.css",
-
+              "src/scss/style.css",
               "src/styles.css"             
             ],
             "scripts": [             
