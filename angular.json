@@ -27,8 +27,7 @@
               "src/css/bootstrap.min.css",
               "src/css/normalize.css",
               "src/css/font-awesome.min.css",
-              "src/css/themify-icons.css",
-              "src/css/flag-icon.min.css",
+              "src/css/themify-icons.css",              
               "src/css/cs-skin-elastic.css",
 
               "src/styles.css"             
