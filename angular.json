@@ -20,13 +20,23 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/img"
             ],
             "styles": [                            
               "src/css/bootstrap.min.css",
-              "src/scss/style.css"              
+              "src/css/normalize.css",
+              "src/css/font-awesome.min.css",
+              "src/css/themify-icons.css",
+              "src/css/flag-icon.min.css",
+              "src/css/cs-skin-elastic.css",
+
+              "src/styles.css"             
             ],
             "scripts": [             
+              "node_modules/jquery/dist/jquery.js",
+              "src/js/plugins.js",
+              "src/js/main.js"             
             ]
           },
           "configurations": {
@@ -77,7 +87,10 @@
               "src/css/bootstrap.min.css", 
               "src/scss/style.css"
             ],
-            "scripts": [            
+            "scripts": [         
+              "node_modules/jquery/dist/jquery.js",
+              "src/js/plugins.js",
+              "src/js/main.js"       
             ],
             "assets": [
               "src/favicon.ico",
