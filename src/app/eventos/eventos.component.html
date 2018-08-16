@@ -1,3 +1,32 @@
-<p>
-  eventos works!
-</p>
+<div class="animated fadeIn" *ngIf="router.url == '/home/evento'">
+  <div class="row">     
+    <div class="col-xs-12 col-sm-12">
+      <h3>Lista de Eventos</h3>
+      <hr/>
+        <button type="button" routerLink='criar' class="btn btn-primary">NOVO EVENTO</button>
+        <hr/>
+        <table class="table table-striped">
+            <thead>
+              <tr>                
+                <th scope="col">Título</th>
+                <th scope="col">Data</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let evento of Eventos">                
+                <td>{{evento.titulo}}</td>
+                <td>{{evento.data_hora | date:'dd/MM/yyyy'}} - {{evento.hora}}</td>
+                <td>{{evento.endereco}}</td>
+                <td><button type="button"   [routerLink]="['editar/', evento._id]" class="btn btn-warning">Editar</button>&nbsp;
+                  <button type="button" (click)="excluirEvento(evento._id)"  class="btn btn-danger">Excluir</button>
+                </td>
+              </tr>           
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

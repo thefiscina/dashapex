@@ -10,7 +10,10 @@ import { appRoutes } from '../../routes';
 })
 export class PageLoginComponent implements OnInit {
   Userauth: any;
-  constructor(private _services: RequestService, private router: Router) { }
+  constructor(private _services: RequestService, private router: Router) { 
+    localStorage.setItem('user', "");
+
+  }
 
   ngOnInit() {
   }

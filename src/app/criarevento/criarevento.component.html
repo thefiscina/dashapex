@@ -1,0 +1,100 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <div class="row">
+        <div class="col-md-9" *ngIf="router.url !=  '/home/evento/criar'">
+          <button type="button" class="btn btn-primary" [routerLink]="['../../']"> Voltar para a lista</button>
+        </div>
+        <div class="col-md-9" *ngIf="router.url == '/home/evento/criar'">
+          <button type="button" class="btn btn-primary" [routerLink]="['../']"> Voltar para a lista</button>
+        </div>
+      </div>
+      <hr/>
+      <div>
+        <form [formGroup]="DadosEvento" (ngSubmit)="SalvarEvento()">
+          <div class="card">
+            <div class="card-header">
+              <strong>{{Titulo}}</strong>
+            </div>
+            <div class="card-body card-block">
+              <div class="form-group">
+                <img src="{{foto64}}">
+              </div>
+              <div class="form-group">
+                <label class=" form-control-label">Foto evento</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="ti-image"></i>
+                  </div>
+                  <input type="file" (change)="changeListener($event, 'foto')" class="form-control" formControlName="foto">
+                </div>
+                <small class="form-text text-muted">insira uma foto para o evento</small>
+              </div>
+
+              <div class="form-group">
+                <label class=" form-control-label">Titulo do evento</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="ti-pencil-alt"></i>
+                  </div>
+                  <input class="form-control" formControlName="titulo">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class=" form-control-label">Descrição do evento</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="ti-comment-alt"></i>
+                  </div>
+                  <textarea rows="5" class="form-control" formControlName="descricao"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class=" form-control-label">Localização do evento</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="ti-direction-alt"></i>
+                  </div>
+                  <input class="form-control" formControlName="endereco">
+                </div>
+                <small class="form-text text-muted">Ex: rua vinte e sete, vila nova</small>
+              </div>
+
+              <div class="form-group">
+                  <label class=" form-control-label">Horario do evento</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="ti-time"></i>
+                    </div>
+                    <input type="text" class="form-control"  mask="00:00" formControlName="hora">
+                  </div>                  
+                </div>
+
+              <div class="form-group">
+                <label class=" form-control-label">Data do evento</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="ti-calendar"></i>
+                  </div>
+                  <ng-datepicker position="top-right" [options]="options" formControlName="data_hora" ></ng-datepicker>
+                </div>
+                <small class="form-text text-muted">Ex: rua vinte e sete, vila nova</small>
+              </div>
+
+
+              <div class="form-group" *ngIf="EventoID == null">
+                <button class="btn btn-success" type="submit">Salvar dados</button>
+              </div>
+              <div class="form-group" *ngIf="EventoID != null">
+                <button class="btn btn-success" type="submit">Editar dados</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,3 +1,30 @@
-<p>
-  projetos works!
-</p>
+<div class="animated fadeIn" *ngIf="router.url == '/home/projeto'">
+  <div class="row">     
+    <div class="col-xs-12 col-sm-12">
+      <h3>Lista de Projetos</h3>
+      <hr/>
+        <button type="button" routerLink='criar' class="btn btn-primary">NOVO PROJETO</button>
+        <hr/>
+        <table class="table table-striped">
+            <thead>
+              <tr>                
+                <th scope="col">Título</th>
+                <th scope="col">Data</th>              
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let projeto of Projetos">                
+                <td>{{projeto.titulo}}</td>
+                <td>{{projeto.data_hora | date:'dd/MM/yyyy'}} - {{evento.hora}}</td>                
+                <td><button type="button"   [routerLink]="['editar/', projeto._id]" class="btn btn-warning">Editar</button>&nbsp;
+                  <button type="button" (click)="excluirProjeto(projeto._id)"  class="btn btn-danger">Excluir</button>
+                </td>
+              </tr>           
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

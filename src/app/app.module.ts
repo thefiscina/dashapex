@@ -20,6 +20,11 @@ import { EditarcabecalhoComponent } from './editarcabecalho/editarcabecalho.comp
 import { EditarsobrenosComponent } from './editarsobrenos/editarsobrenos.component';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgDatepickerModule } from 'ng2-datepicker';
+import {NgxMaskModule} from 'ngx-mask'
+
+import { CriareventoComponent } from './criarevento/criarevento.component';
+import { CriarprojetoComponent } from './criarprojeto/criarprojeto.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     EventosComponent,
     ProjetosComponent,
     EditarcabecalhoComponent,
-    EditarsobrenosComponent
+    EditarsobrenosComponent,
+    CriareventoComponent,
+    CriarprojetoComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +49,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     FormsModule,    
     NgxSpinnerModule,
+    NgDatepickerModule,
+    NgxMaskModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [RequestService],

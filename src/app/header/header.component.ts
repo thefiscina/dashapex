@@ -6,17 +6,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public user = JSON.parse(localStorage.getItem('user'));
+  public item = localStorage.getItem('user')
+  public user = "";
   constructor(private router: Router) {
-    console.log(this.user);
-    if(this.user == null){
-     this.router.navigate(['/'])
+    if (this.item == "" || this.item == null) {
+      this.router.navigate(['/'])
+    } else {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      console.log(this.user);
+      if (this.user == null || this.user == "") {
+        this.router.navigate(['/'])
+      }
     }
-
-   }
+  }
 
   ngOnInit() {
-    
+
   }
 
 }
