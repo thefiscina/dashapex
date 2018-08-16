@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class RequestService {
-// apiUrl = 'https://apiapex.herokuapp.com/api/v1/';
-apiUrl = 'http://localhost:5000/api/v1/';
+apiUrl = 'https://apiapex.herokuapp.com/api/v1/';
+// apiUrl = 'http://localhost:5000/api/v1/';
     constructor(private http: HttpClient) { }
     getUsers() {
         return new Promise(resolve => {
