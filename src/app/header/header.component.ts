@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   public item = localStorage.getItem('user')
-  public user = "";
+  public user:any;
   constructor(private router: Router) {
     if (this.item == "" || this.item == null) {
       this.router.navigate(['/'])
