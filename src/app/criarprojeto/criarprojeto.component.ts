@@ -15,7 +15,7 @@ export class CriarprojetoComponent implements OnInit {
   ProjetoID: any;
   Titulo: any;
   DadosProjeto: FormGroup;
-  foto64:any;  
+  foto:any;  
   private user = JSON.parse(localStorage.getItem('user'));
   
   options: DatepickerOptions = {
@@ -55,7 +55,7 @@ export class CriarprojetoComponent implements OnInit {
     this.ProjetoID = this.route.snapshot.params['id'];
     if (this.ProjetoID != null) {
       this.Titulo = "Editar Projeto";     
-      this._services.getEvento(this.ProjetoID).then((result) => {        
+      this._services.getProjeto(this.ProjetoID).then((result) => {        
         console.log(result);
         this.popularDados(result["result"]);
       }, (err) => {
@@ -71,14 +71,13 @@ export class CriarprojetoComponent implements OnInit {
     this.DadosProjeto.controls.titulo.setValue(dados.titulo);
     this.DadosProjeto.controls.data_hora.setValue(dados.data_hora);
     this.DadosProjeto.controls.hora.setValue(dados.hora);
-    this.DadosProjeto.controls.descricao.setValue(dados.descricao);
-    this.DadosProjeto.controls.endereco.setValue(dados.endereco);
+    this.DadosProjeto.controls.descricao.setValue(dados.descricao);    
     this.DadosProjeto.controls.foto64.setValue(dados.foto64);
-    this.foto64 = dados.foto64;
+    this.foto = dados.foto64;
     this.DadosProjeto.controls.serviceID.setValue(dados.serviceID);
   }
 
-  SalvarEvento() {
+  SalvarProjeto() {
     console.log(this.DadosProjeto.value);
     console.log(this.DadosProjeto.value.hora);
     var hora_ = '';
@@ -115,7 +114,7 @@ export class CriarprojetoComponent implements OnInit {
       switch (str) {
         case 'foto':
           this.DadosProjeto.controls.foto64.setValue(myReader.result);
-          this.foto64 = myReader.result;
+          this.foto = myReader.result;
           break;  
       }
 

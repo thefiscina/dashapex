@@ -54,7 +54,6 @@ export class ProjetosComponent implements OnInit {
         console.log('erro ao solicitar');
       });
     }
-
   }
 
 }

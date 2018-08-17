@@ -16,9 +16,9 @@
             <tbody>
               <tr *ngFor="let projeto of Projetos">                
                 <td>{{projeto.titulo}}</td>
-                <td>{{projeto.data_hora | date:'dd/MM/yyyy'}} - {{evento.hora}}</td>                
+                <td>{{projeto.data_hora | date:'dd/MM/yyyy'}}  {{projeto.hora != null ? projeto.hora : ""}}</td>                
                 <td><button type="button"   [routerLink]="['editar/', projeto._id]" class="btn btn-warning">Editar</button>&nbsp;
-                  <button type="button" (click)="excluirProjeto(projeto._id)"  class="btn btn-danger">Excluir</button>
+                  <button type="button" (click)="excluirprojeto(projeto._id)"  class="btn btn-danger">Excluir</button>
                 </td>
               </tr>           
             </tbody>
