@@ -91,13 +91,13 @@ export class CriareventoComponent implements OnInit {
 
     if (this.EventoID != null) {
       this._services.putEvento(this.DadosEvento.value, this.EventoID).then((result) => {
-            this.router.navigate(['/home/evento']);
+            this.router.navigate(['/evento']);
       }, (err) => {
         console.log('erro ao solicitar');
       });
     } else {
       this._services.salvarEvento(this.DadosEvento.value).then((result) => {     
-        this.router.navigate(['/home/evento']);
+        this.router.navigate(['/evento']);
       }, (err) => {
         console.log('erro ao solicitar');
       });

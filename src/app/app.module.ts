@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
-import { PageLoginComponent } from './user/page-login/page-login.component';
+import { PageLoginComponent } from './page-login/page-login.component';
 import { appRoutes } from './routes';
 import { HttpClientModule } from '@angular/common/http';
 import { RequestService } from './shared/user.service';
@@ -25,6 +25,8 @@ import {NgxMaskModule} from 'ngx-mask'
 
 import { CriareventoComponent } from './criarevento/criarevento.component';
 import { CriarprojetoComponent } from './criarprojeto/criarprojeto.component';
+import { AuthenticationService } from './shared/authentication.service';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,7 @@ import { CriarprojetoComponent } from './criarprojeto/criarprojeto.component';
     NgxMaskModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [RequestService],
+  providers: [RequestService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
