@@ -89,13 +89,13 @@ export class CriarprojetoComponent implements OnInit {
 
     if (this.ProjetoID != null) {
       this._services.putProjeto(this.DadosProjeto.value, this.ProjetoID).then((result) => {
-            this.router.navigate(['projeto']);
+            this.router.navigate(['/home/projeto']);
       }, (err) => {
         console.log('erro ao solicitar');
       });
     } else {
       this._services.salvarProjeto(this.DadosProjeto.value).then((result) => {     
-        this.router.navigate(['projeto']);
+        this.router.navigate(['/home/projeto']);
       }, (err) => {
         console.log('erro ao solicitar');
       });

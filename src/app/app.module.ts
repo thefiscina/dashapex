@@ -21,7 +21,7 @@ import { EditarsobrenosComponent } from './editarsobrenos/editarsobrenos.compone
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgDatepickerModule } from 'ng2-datepicker';
-import {NgxMaskModule} from 'ngx-mask'
+import {NgxMaskModule} from 'ngx-mask';
 
 import { CriareventoComponent } from './criarevento/criarevento.component';
 import { CriarprojetoComponent } from './criarprojeto/criarprojeto.component';

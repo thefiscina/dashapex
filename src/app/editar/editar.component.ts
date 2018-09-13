@@ -22,7 +22,8 @@ export class EditarComponent implements OnInit {
       endereco: [''],
       linkedin: [''],
       twitter: [''],
-      facebook: ['']
+      facebook: [''],
+      instagram:['']
     });
 
   }
@@ -47,6 +48,7 @@ export class EditarComponent implements OnInit {
     this.DadosContato.controls['linkedin'].setValue(dados.linkedin);    
     this.DadosContato.controls['twitter'].setValue(dados.twitter);    
     this.DadosContato.controls['facebook'].setValue(dados.facebook);        
+    this.DadosContato.controls['instagram'].setValue(dados.instagram);   
   }
 
   SalvarDadosContato(){           

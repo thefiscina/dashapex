@@ -39,5 +39,5 @@ export const appRoutes: Routes = [
         path: 'login', component: PageLoginComponent,       
     },
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'home' }
 ];

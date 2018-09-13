@@ -45,6 +45,7 @@ export class CriareventoComponent implements OnInit {
       foto64: [''],
       foto: [''],
       descricao: [''],
+      url:[''],
       serviceID: [this.user.serviceID],
     });
 
@@ -77,6 +78,7 @@ export class CriareventoComponent implements OnInit {
     this.DadosEvento.controls.foto64.setValue(dados.foto64);
     this.foto64 = dados.foto64;
     this.DadosEvento.controls.serviceID.setValue(dados.serviceID);
+    this.DadosEvento.controls.url.setValue(dados.url);
   }
 
   SalvarEvento() {
@@ -91,13 +93,13 @@ export class CriareventoComponent implements OnInit {
 
     if (this.EventoID != null) {
       this._services.putEvento(this.DadosEvento.value, this.EventoID).then((result) => {
-            this.router.navigate(['/evento']);
+            this.router.navigate(['/home/evento']);
       }, (err) => {
         console.log('erro ao solicitar');
       });
     } else {
       this._services.salvarEvento(this.DadosEvento.value).then((result) => {     
-        this.router.navigate(['/evento']);
+        this.router.navigate(['/home/evento']);
       }, (err) => {
         console.log('erro ao solicitar');
       });
