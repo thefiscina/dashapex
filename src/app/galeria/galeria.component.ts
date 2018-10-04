@@ -92,8 +92,8 @@ export class GaleriaComponent implements OnInit {
   }
 
   Salvar() {
-
     this._services.salvarGaleria(this.formGaleria.value).then((result) => {
+     if(this.masonryItems.length > 0){
       if (this._masonry) {
         this._masonry.removeAllItems()
           .subscribe((items: MasonryGridItem) => {
@@ -101,7 +101,10 @@ export class GaleriaComponent implements OnInit {
             this.masonryItems = [];
             this.getGaleria();
           });        
-      }    
+      }
+    }else{
+      this.getGaleria();
+    }
       this.formGaleria.controls.foto64.setValue('');
       this.formGaleria.controls.descricao.setValue('');
       this.formGaleria.controls.titulo.setValue('');
