@@ -18,10 +18,14 @@ import { EventosComponent } from './eventos/eventos.component';
 import { ProjetosComponent } from './projetos/projetos.component';
 import { EditarcabecalhoComponent } from './editarcabecalho/editarcabecalho.component';
 import { EditarsobrenosComponent } from './editarsobrenos/editarsobrenos.component';
+import { GaleriaComponent } from './galeria/galeria.component';
+
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import {NgxMaskModule} from 'ngx-mask';
+// Import NgMasonryGridModule
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 
 import { CriareventoComponent } from './criarevento/criarevento.component';
 import { CriarprojetoComponent } from './criarprojeto/criarprojeto.component';
@@ -43,7 +47,8 @@ import { AuthGuard } from './_guards/auth.guard';
     EditarcabecalhoComponent,
     EditarsobrenosComponent,
     CriareventoComponent,
-    CriarprojetoComponent
+    CriarprojetoComponent,
+    GaleriaComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,7 @@ import { AuthGuard } from './_guards/auth.guard';
     FormsModule,    
     NgxSpinnerModule,
     NgDatepickerModule,
+    NgMasonryGridModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],

@@ -1,0 +1,70 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <form [formGroup]="formGaleria" (ngSubmit)="Salvar()">
+        <div class="card">
+          <div class="card-header">
+            <strong>Adicionar nova foto na galeria</strong>
+            <small> (* Ao salvar será atualizado automaticamente)</small>
+          </div>
+          <div class="card-body card-block">
+            <div class="form-group">
+              <label class=" form-control-label">Título</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="ti-pencil"></i>
+                </div>
+                <input class="form-control" formControlName="titulo">
+              </div>              
+            </div>
+            <div class="form-group">
+              <label class=" form-control-label">Descrição 1</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-phone"></i>
+                </div>
+                <input class="form-control" formControlName="descricao">
+              </div>  
+            </div>
+            <div class="form-group">                            
+              <img src="{{foto}}">              
+          </div>
+          <div class="form-group">
+            <label class=" form-control-label">Foto</label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="ti-image"></i>
+              </div>
+              <input type="file" (change)="changeListener($event, 'foto')" class="form-control" formControlName="foto">
+            </div>              
+          </div>
+            <div class="form-group">
+              <button class="btn btn-success" type="submit">Salvar dados</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<div >  
+    <div class="col-xs-12 col-sm-12">
+    <ng-masonry-grid
+                    (onNgMasonryInit)="onNgMasonryInit($event)"
+                    [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" 
+                    [useAnimation]="true"
+                    [useImagesLoaded]="true"
+                    [scrollAnimationOptions]="{ animationEffect: 'effect-1', minDuration : 0.4, maxDuration : 0.7 }">
+      <!-- Masonry Grid Item -->
+      <ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let item of masonryItems; let i = index;" > 
+          <div class="container">
+              <img src="{{item.foto64}}" alt="No image" />
+              <button style="float: right;" (click)="removeItem(item._id)" class="btn btn-danger"> <i class="ti-close"></i> &nbsp; Remover</button>
+            </div>        
+        
+      </ng-masonry-grid-item>
+    </ng-masonry-grid>
+  </div>
+</div>
+</div>
+  <ngx-spinner></ngx-spinner>
+  <!-- .animated -->

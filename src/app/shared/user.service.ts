@@ -274,5 +274,86 @@ apiUrl = 'https://apiapex.herokuapp.com/api/v1/';
             });
         });
       }
+
+
+      getGaleria(eventoid) {
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl + 'galeria/'+eventoid,               
+            ).subscribe(data => {
+                resolve(data);
+            }, err => {
+                console.log(err);
+                if (err.status == 401) {
+                    resolve(err)
+                }
+            });
+        });
+    }
+
+    getGalerias(eventoid) {
+      return new Promise(resolve => {
+          this.http.get(this.apiUrl + 'galeria'             
+          ).subscribe(data => {
+              resolve(data);
+          }, err => {
+              console.log(err);
+              if (err.status == 401) {
+                  resolve(err)
+              }
+          });
+      });
+  }
+
+      salvarGaleria(data) {    
+        return new Promise((resolve, reject) => {
+          this.http.post(this.apiUrl+'galeria/', JSON.stringify(data), {
+            headers: new HttpHeaders().set("Content-Type", "application/json")        
+          })
+            .subscribe(res => {
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+        });
+      }
+
+      getGaleriaService(data) {    
+        return new Promise((resolve, reject) => {
+          this.http.post(this.apiUrl+'galeria/service/', JSON.stringify(data), {
+            headers: new HttpHeaders().set("Content-Type", "application/json")        
+          })
+            .subscribe(res => {
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+        });
+      }
+
+      putGaleria(data, id) {    
+        return new Promise((resolve, reject) => {
+          this.http.put(this.apiUrl+'galeria/' + id, JSON.stringify(data), {
+            headers: new HttpHeaders().set("Content-Type", "application/json")        
+          })
+            .subscribe(res => {
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+        });
+      }
+
+      deleteGaleria(id) {    
+        return new Promise((resolve, reject) => {
+          this.http.delete(this.apiUrl+'galeria/' + id ,{
+            headers: new HttpHeaders().set("Content-Type", "application/json")        
+          })
+            .subscribe(res => {
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+        });
+      }
     
 }

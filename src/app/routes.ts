@@ -10,7 +10,7 @@ import { EditarsobrenosComponent } from './editarsobrenos/editarsobrenos.compone
 import { CriareventoComponent } from './criarevento/criarevento.component';
 import { CriarprojetoComponent } from './criarprojeto/criarprojeto.component';
 import { AuthGuard } from './_guards/auth.guard';
-
+import { GaleriaComponent } from './galeria/galeria.component';
 
 export const appRoutes: Routes = [
     {
@@ -32,7 +32,8 @@ export const appRoutes: Routes = [
                     { path: 'criar', component: CriarprojetoComponent },
                     { path: 'editar/:id', component: CriarprojetoComponent },
                 ]
-            }      
+            },
+            { path: 'galeria', component: GaleriaComponent },      
         ]   
     },
     {
