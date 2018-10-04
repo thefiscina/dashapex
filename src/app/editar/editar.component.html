@@ -1,6 +1,7 @@
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-xs-12 col-sm-12">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
       <form [formGroup]="DadosContato" (ngSubmit)="SalvarDadosContato()">
         <div class="card">
           <div class="card-header">

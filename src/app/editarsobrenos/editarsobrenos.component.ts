@@ -11,6 +11,7 @@ export class EditarsobrenosComponent implements OnInit {
   DadosSobreNos: FormGroup;
   Servico:any;
   foto:string='';
+  public loading = false;
   private user = JSON.parse(localStorage.getItem('user'));
   constructor(private formBuilder: FormBuilder, private _services: RequestService,private spinner: NgxSpinnerService) {
     this.DadosSobreNos = this.formBuilder.group({
@@ -24,16 +25,18 @@ export class EditarsobrenosComponent implements OnInit {
 
    ngOnInit() {
     if (this.user.serviceID != null) {
+      this.loading = true;
       var dado = { serviceID: this.user.serviceID }
       this._services.getDadosSobreService(dado).then((result) => {
         this.Servico = result["result"];
-        console.log(this.Servico);
+        this.loading = false;
         if (this.Servico.length > 0) {
           this.popularDados(this.Servico[0])
         }else{
           this.Servico = null;
         }
       }, (err) => {
+        this.loading = false;
         console.log('erro ao solicitar');
       });
     }
@@ -70,16 +73,13 @@ export class EditarsobrenosComponent implements OnInit {
     console.log(this.DadosSobreNos.value);
     if (this.Servico != null) {
       this._services.putDadosSobreService(this.DadosSobreNos.value, this.Servico[0]._id).then((result) => {
-        this.Servico = result["result"];
-        console.log(this.Servico);
-
+        this.Servico = result["result"];        
       }, (err) => {
         console.log('erro ao solicitar');
       });
     } else {
       this._services.salvarDadosSobre(this.DadosSobreNos.value).then((result) => {
-        this.Servico = result["result"];
-        console.log(this.Servico);
+        this.Servico = result["result"];        
       }, (err) => {
         console.log('erro ao solicitar');
       });

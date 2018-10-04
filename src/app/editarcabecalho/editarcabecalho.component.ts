@@ -14,7 +14,7 @@ export class EditarcabecalhoComponent implements OnInit {
   fotoslider264: any;
   fotoslider364: any;
   logo64: any;
-
+public loading = false;
   private user = JSON.parse(localStorage.getItem('user'));
   constructor(private formBuilder: FormBuilder, private _services: RequestService,private spinner: NgxSpinnerService) {
     this.DadosCabecalho = this.formBuilder.group({
@@ -39,16 +39,18 @@ export class EditarcabecalhoComponent implements OnInit {
 
   ngOnInit() {
     if (this.user.serviceID != null) {
+      this.loading = true;
       var dado = { serviceID: this.user.serviceID }
       this._services.getDadoscabecalhoService(dado).then((result) => {
         this.Servico = result["result"];
-        console.log(this.Servico);
+        this.loading = false;
         if (this.Servico.length > 0) {
           this.popularDados(this.Servico[0])
         }else{
           this.Servico = null;
         }
       }, (err) => {
+        this.loading = false;
         console.log('erro ao solicitar');
       });
     }

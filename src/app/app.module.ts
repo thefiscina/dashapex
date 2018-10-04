@@ -26,6 +26,8 @@ import { NgDatepickerModule } from 'ng2-datepicker';
 import {NgxMaskModule} from 'ngx-mask';
 // Import NgMasonryGridModule
 import { NgMasonryGridModule } from 'ng-masonry-grid';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { CriareventoComponent } from './criarevento/criarevento.component';
 import { CriarprojetoComponent } from './criarprojeto/criarprojeto.component';
@@ -58,8 +60,10 @@ import { AuthGuard } from './_guards/auth.guard';
     NgxSpinnerModule,
     NgDatepickerModule,
     NgMasonryGridModule,
+    MatProgressBarModule,
     NgxMaskModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
   ],
   providers: [RequestService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]

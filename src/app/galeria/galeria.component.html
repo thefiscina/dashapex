@@ -47,6 +47,7 @@
     </div>
   </div>
 <div >  
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     <div class="col-xs-12 col-sm-12">
     <ng-masonry-grid
                     (onNgMasonryInit)="onNgMasonryInit($event)"

@@ -4,7 +4,9 @@
       <h3>Lista de Projetos</h3>
       <hr/>
         <button type="button" routerLink='criar' class="btn btn-primary"><i class="ti-plus"></i> &nbsp;NOVO PROJETO</button>
+      
         <hr/>
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         <table class="table table-striped">
             <thead>
               <tr>                

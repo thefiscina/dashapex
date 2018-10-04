@@ -9,6 +9,7 @@
             <button type="button" class="btn btn-primary" [routerLink]="['../']"> <i class="ti-arrow-left"></i> &nbsp;Voltar para a lista</button>
           </div>
         </div>
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         <hr/>
         <div>
           <form [formGroup]="DadosProjeto" (ngSubmit)="SalvarProjeto()">

@@ -16,6 +16,7 @@ export class CriarprojetoComponent implements OnInit {
   Titulo: any;
   DadosProjeto: FormGroup;
   foto:any;  
+  public loading = false;
   private user = JSON.parse(localStorage.getItem('user'));
   
   options: DatepickerOptions = {
@@ -54,17 +55,18 @@ export class CriarprojetoComponent implements OnInit {
   ngOnInit() {
     this.ProjetoID = this.route.snapshot.params['id'];
     if (this.ProjetoID != null) {
+      this.loading = true;
       this.Titulo = "Editar Projeto";     
       this._services.getProjeto(this.ProjetoID).then((result) => {        
-        console.log(result);
+        this.loading = false;
         this.popularDados(result["result"]);
       }, (err) => {
+        this.loading = false;
         console.log('erro ao solicitar');
       });    
     } else {
       this.Titulo = "Criar Projeto";
-    }
-    // this.router.navigate(['/empresa']);
+    }    
   }
 
   popularDados(dados){
@@ -77,9 +79,7 @@ export class CriarprojetoComponent implements OnInit {
     this.DadosProjeto.controls.serviceID.setValue(dados.serviceID);
   }
 
-  SalvarProjeto() {
-    console.log(this.DadosProjeto.value);
-    console.log(this.DadosProjeto.value.hora);
+  SalvarProjeto() {    
     var hora_ = '';
     if(this.DadosProjeto.value.hora != ''){
       hora_ =  this.DadosProjeto.value.hora.substring(2,0) + ":" + this.DadosProjeto.value.hora.substring(2,this.DadosProjeto.value.hora.length);

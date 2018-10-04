@@ -13,6 +13,7 @@ import { Router, NavigationStart, NavigationEnd, Event as NavigationEvent } from
 export class ProjetosComponent implements OnInit {
 
   Projetos: any;
+  public loading = false;
   private user = JSON.parse(localStorage.getItem('user'));
   constructor(private formBuilder: FormBuilder, public router: Router, private _services: RequestService, private spinner: NgxSpinnerService) {
     this.router.events.forEach((event: NavigationEvent) => {
@@ -35,12 +36,13 @@ export class ProjetosComponent implements OnInit {
 
   carregarDados(){
     if (this.user.serviceID != null) {
+      this.loading = true;
       var dado = { serviceID: this.user.serviceID }
       this._services.getProjetoService(dado).then((result) => {
         this.Projetos = result["result"];
-        console.log(this.Projetos);
-
+        this.loading = false;
       }, (err) => {
+        this.loading = false;
         console.log('erro ao solicitar');
       });
     }

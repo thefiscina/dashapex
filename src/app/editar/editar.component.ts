@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class EditarComponent implements OnInit {
   DadosContato: FormGroup;
   Servico:any;
+  public loading = false;
   private user = JSON.parse(localStorage.getItem('user'));
   constructor(private formBuilder: FormBuilder, private _services : RequestService,private spinner: NgxSpinnerService) { 
     this.DadosContato = this.formBuilder.group({
@@ -30,11 +31,13 @@ export class EditarComponent implements OnInit {
 
 
   ngOnInit() {
+    this.loading = true;
     this._services.getService(this.user.serviceID).then((result) => {             
       this.Servico = result["result"];
-      console.log(this.Servico); 
+      this.loading = false;      
       this.popularDados(this.Servico);
     }, (err) => {   
+      this.loading = false;
       console.log('erro ao solicitar');   
     });   
   }

@@ -14,7 +14,7 @@ export class GaleriaComponent implements OnInit {
   formGaleria: FormGroup;
   Servico: any;
   foto: any;
-
+  public loading= false;
   private user = JSON.parse(localStorage.getItem('user'));
   constructor(private formBuilder: FormBuilder, private _services: RequestService, private spinner: NgxSpinnerService) {
     this.formGaleria = this.formBuilder.group({
@@ -50,6 +50,7 @@ export class GaleriaComponent implements OnInit {
 
   ngOnInit() {
     if (this.user.serviceID != null) {
+      this.loading = true;
       this.getGaleria();
     }
   }
@@ -59,7 +60,8 @@ export class GaleriaComponent implements OnInit {
       this.masonryItems = [];
       var dado = { serviceID: this.user.serviceID }
       this._services.getGaleriaService(dado).then((result) => {
-        this.masonryItems = result["result"];        
+        this.masonryItems = result["result"];  
+        this.loading = false;      
       }, (err) => {
         console.log('erro ao solicitar');
       });
@@ -86,7 +88,6 @@ export class GaleriaComponent implements OnInit {
           this.foto = myReader.result;
           break;
       }
-
     }
     myReader.readAsDataURL(file);
   }

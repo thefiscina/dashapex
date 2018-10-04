@@ -17,7 +17,7 @@ export class CriareventoComponent implements OnInit {
   DadosEvento: FormGroup;
   foto64:any;  
   private user = JSON.parse(localStorage.getItem('user'));
-  
+  public loading = false;
   options: DatepickerOptions = {
     minYear: 2018,
     maxYear: 2030,
@@ -48,25 +48,24 @@ export class CriareventoComponent implements OnInit {
       url:[''],
       serviceID: [this.user.serviceID],
     });
-
-    
-
   }
 
   ngOnInit() {
     this.EventoID = this.route.snapshot.params['id'];
     if (this.EventoID != null) {
+      this.loading = true;
       this.Titulo = "Editar Evento";     
       this._services.getEvento(this.EventoID).then((result) => {        
-        console.log(result);
+        this.loading = false;
         this.popularDados(result["result"]);
       }, (err) => {
+        this.loading = true;
         console.log('erro ao solicitar');
       });    
     } else {
       this.Titulo = "Criar Evento";
     }
-    // this.router.navigate(['/empresa']);
+    
   }
 
   popularDados(dados){
@@ -81,16 +80,12 @@ export class CriareventoComponent implements OnInit {
     this.DadosEvento.controls.url.setValue(dados.url);
   }
 
-  SalvarEvento() {
-    console.log(this.DadosEvento.value);
-    console.log(this.DadosEvento.value.hora);
+  SalvarEvento() {    
     var hora_ = '';
     if(this.DadosEvento.value.hora != ''){
       hora_ =  this.DadosEvento.value.hora.substring(2,0) + ":" + this.DadosEvento.value.hora.substring(2,this.DadosEvento.value.hora.length);
       this.DadosEvento.value.hora = hora_;
-    }
-   
-
+    }  
     if (this.EventoID != null) {
       this._services.putEvento(this.DadosEvento.value, this.EventoID).then((result) => {
             this.router.navigate(['/home/evento']);
