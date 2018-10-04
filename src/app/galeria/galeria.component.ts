@@ -59,10 +59,7 @@ export class GaleriaComponent implements OnInit {
       this.masonryItems = [];
       var dado = { serviceID: this.user.serviceID }
       this._services.getGaleriaService(dado).then((result) => {
-        this.masonryItems = result["result"];      
-        if (this._masonry) {
-          this._masonry.reOrderItems();         
-        }  
+        this.masonryItems = result["result"];        
       }, (err) => {
         console.log('erro ao solicitar');
       });
